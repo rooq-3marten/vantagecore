@@ -1,0 +1,6 @@
+{
+  "name": "VantageCore Systems",
+  "description": "We migrate on-premise server estates to Google Cloud and Microsoft Azure, build redundant multi-site networks, and staff a 24/7 infrastructure operations desk.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
