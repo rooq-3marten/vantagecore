@@ -41,7 +41,6 @@ export default function Image({
       height={fill ? undefined : height}
       loading={priority ? 'eager' : 'lazy'}
       decoding={priority ? 'sync' : 'async'}
-      referrerPolicy="no-referrer"
       onError={() => setFailed(true)}
       className={`${fill ? 'absolute inset-0 h-full w-full' : ''} ${className}`}
       {...rest}

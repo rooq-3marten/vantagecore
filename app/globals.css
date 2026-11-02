@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@source "../app";
+@source "../components";
+@source "../src";
+@source "../index.html";
 
 :root {
   --color-dark: #0f172a;
@@ -25,7 +29,7 @@ html {
 
 .hero-surface-wash { background-color: var(--color-surface); background-image: var(--gradient-hero); }
 .accent-gradient-bar { background-image: var(--gradient-accent); }
-.hero-dot-grid { background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px); background-size: 20px 20px; }
+.hero-dot-grid { background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px); background-size: 20px 20px; }
 
 .btn-gradient {
   background-image: var(--gradient-accent);

@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import CertificationsList from '@/components/sections/CertificationsList';
 import CompanyStory from '@/components/sections/CompanyStory';
-import LeadershipGrid from '@/components/sections/LeadershipGrid';
+import DeliveryModel from '@/components/sections/DeliveryModel';
 import MissionSection from '@/components/sections/MissionSection';
 import { companyName, siteMetadata } from '@/lib/constants';
 
@@ -17,7 +17,7 @@ export default function AboutPage() {
     <main>
       <CompanyStory />
       <MissionSection />
-      <LeadershipGrid />
+      <DeliveryModel />
       <CertificationsList />
     </main>
   );

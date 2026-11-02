@@ -43,10 +43,10 @@ export default function Footer() {
           <div className="md:col-span-3">
             <p className="text-xs font-semibold text-white">{footerCopy.headquartersHeading}</p>
             <address className="mt-4 space-y-2 text-sm font-normal not-italic leading-relaxed text-slate-300">
-              <p>{primaryOffice.addressLine}</p>
-              <p>{primaryOffice.cityCountry}</p>
+              <p>{primaryOffice.coverageArea}</p>
               <p><a href={primaryOffice.phoneHref} className="tabular-nums text-white hover:underline">{primaryOffice.phoneDisplay}</a></p>
               <p><a href={primaryEmailHref} className="text-slate-300 hover:text-white hover:underline">{primaryEmail}</a></p>
+              <p className="text-xs text-slate-400">{primaryOffice.hours}</p>
             </address>
           </div>
         </div>

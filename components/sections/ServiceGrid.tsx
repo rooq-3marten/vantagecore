@@ -24,7 +24,7 @@ export default function ServiceGrid() {
                 <p className="mt-3 text-sm font-normal leading-relaxed text-slate-600">{featured.description}</p>
               </div>
               <div className="sm:col-span-5">
-                <PhotoFrame src={featured.imageSrc} alt={featured.imageAlt} />
+                <PhotoFrame src={featured.imageSrc} fallbackSrc={featured.fallbackImageSrc} alt={featured.imageAlt} />
               </div>
             </div>
             <ul className="mt-6 space-y-2 border-t border-slate-200 pt-5 text-sm text-slate-600">

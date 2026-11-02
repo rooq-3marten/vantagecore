@@ -58,10 +58,10 @@ export default function ContactSection({ formSlot }: ContactSectionProps) {
                 {offices.map((office) => (
                   <div key={office.region} className="py-5">
                     <h3 className="text-base font-semibold tracking-tight text-slate-900">{office.region}</h3>
-                    <address className="mt-2 space-y-1 text-sm font-normal not-italic leading-relaxed text-slate-600">
-                      <p>{office.addressLine}, {office.cityCountry}</p>
+                    <div className="mt-2 space-y-1 text-sm font-normal leading-relaxed text-slate-600">
+                      <p>{office.coverageArea}</p>
                       <p className="tabular-nums">{office.hours}</p>
-                    </address>
+                    </div>
                     <p className="mt-2 text-xs font-medium text-[#2563eb]">{office.deskNote}</p>
                   </div>
                 ))}
