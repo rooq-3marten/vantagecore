@@ -17,9 +17,12 @@
     "allowJs": true,
     "jsx": "react-jsx",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"],
+      "next": ["./src/shims/next.ts"],
+      "next/link": ["./src/shims/link.tsx"],
+      "next/image": ["./src/shims/image.tsx"],
+      "next/navigation": ["./src/shims/navigation.ts"],
+      "next/font/google": ["./src/shims/font-google.ts"]
     },
     "allowImportingTsExtensions": true,
     "noEmit": true

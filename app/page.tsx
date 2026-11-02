@@ -1,44 +1,26 @@
 import React from 'react';
-import {
-  CtaBanner,
-  HeroSection,
-  PartnerStrip,
-  ServiceHighlightGrid,
-  WhyChooseUsSection,
-} from '../components';
-import { COMPANY_NAME, type SiteMetadata } from '../lib/constants';
-import {
-  heroContent,
-  heroScopeFacts,
-  homeCertifications,
-  homeFinalCta,
-  operatingPrinciples,
-  partners,
-  serviceHighlights,
-} from '../lib/data';
+import type { Metadata } from 'next';
+import Hero from '@/components/sections/Hero';
+import HomeCta from '@/components/sections/HomeCta';
+import PartnerStrip from '@/components/sections/PartnerStrip';
+import ServiceGrid from '@/components/sections/ServiceGrid';
+import WhyChooseUs from '@/components/sections/WhyChooseUs';
+import { companyName, siteMetadata } from '@/lib/constants';
 
-export const metadata: SiteMetadata = {
-  title: `${COMPANY_NAME} – Cloud & Network Infrastructure`,
-  description:
-    'We migrate on-premise server estates to Google Cloud and Microsoft Azure, build redundant multi-site networks, and staff a 24/7 infrastructure operations desk.',
-  openGraph: {
-    title: `${COMPANY_NAME} – Cloud & Network Infrastructure`,
-    description:
-      'We migrate on-premise server estates to Google Cloud and Microsoft Azure, build redundant multi-site networks, and staff a 24/7 infrastructure operations desk.',
-  },
+export const metadata: Metadata = {
+  title: siteMetadata.homeTitle,
+  description: siteMetadata.homeDescription,
+  openGraph: { title: siteMetadata.homeTitle, description: siteMetadata.homeDescription, siteName: companyName, type: 'website' },
 };
 
 export default function HomePage() {
   return (
-    <>
-      <HeroSection content={heroContent} scopeFacts={heroScopeFacts} />
-      <PartnerStrip partners={partners} />
-      <ServiceHighlightGrid items={serviceHighlights} />
-      <WhyChooseUsSection
-        points={operatingPrinciples}
-        certifications={homeCertifications}
-      />
-      <CtaBanner {...homeFinalCta} />
-    </>
+    <main>
+      <Hero />
+      <PartnerStrip />
+      <ServiceGrid />
+      <WhyChooseUs />
+      <HomeCta />
+    </main>
   );
 }

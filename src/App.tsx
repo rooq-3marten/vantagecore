@@ -1,69 +1,55 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
+import React, { useEffect } from 'react';
+import type { Metadata } from 'next';
+import { usePathname } from 'next/navigation';
+import AboutPage, { metadata as aboutMetadata } from '@/app/about/page';
+import ContactPage, { metadata as contactMetadata } from '@/app/contact/page';
+import { AppShell, metadata as rootMetadata } from '@/app/layout';
+import HomePage, { metadata as homeMetadata } from '@/app/page';
+import ServicesPage, { metadata as servicesMetadata } from '@/app/services/page';
 
-import React, { useEffect, useState } from 'react';
-import RootLayout from '../app/layout';
-import HomePage, { metadata as homeMetadata } from '../app/page';
-import ServicesPage, { metadata as servicesMetadata } from '../app/services/page';
-import AboutPage, { metadata as aboutMetadata } from '../app/about/page';
-import ContactPage, { metadata as contactMetadata } from '../app/contact/page';
-import { NotFoundState } from '../components';
-import type { SiteMetadata } from '../lib/constants';
+interface RouteEntry {
+  Component: React.ComponentType;
+  metadata: Metadata;
+}
 
-const notFoundMetadata: SiteMetadata = {
-  title: 'Page Not Found',
-  description: 'The page you requested does not exist or may have moved.',
+const routes: Record<string, RouteEntry> = {
+  '/': { Component: HomePage, metadata: homeMetadata },
+  '/services': { Component: ServicesPage, metadata: servicesMetadata },
+  '/about': { Component: AboutPage, metadata: aboutMetadata },
+  '/contact': { Component: ContactPage, metadata: contactMetadata },
 };
 
-function getCurrentRoute(): string {
-  if (typeof window === 'undefined') return '/';
-  return window.location.pathname + window.location.search;
+function syncDocumentMetadata(meta: Metadata) {
+  const title = meta.title ?? rootMetadata.title ?? '';
+  const description = meta.description ?? rootMetadata.description ?? '';
+  if (title) document.title = title;
+  const setMeta = (selector: string, content: string) => {
+    const tag = document.querySelector<HTMLMetaElement>(selector);
+    if (tag && content) tag.setAttribute('content', content);
+  };
+  setMeta('meta[name="description"]', description);
+  setMeta('meta[property="og:title"]', meta.openGraph?.title ?? title);
+  setMeta('meta[property="og:description"]', meta.openGraph?.description ?? description);
+  setMeta('meta[name="twitter:title"]', title);
+  setMeta('meta[name="twitter:description"]', description);
 }
 
 export default function App() {
-  const [route, setRoute] = useState<string>(getCurrentRoute);
+  const pathname = usePathname();
+  const activeRoute = routes[pathname] ?? routes['/'];
+  const PageComponent = activeRoute.Component;
 
   useEffect(() => {
-    const handlePopState = () => {
-      setRoute(getCurrentRoute());
-    };
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
-
-  const pathname = route.split('?')[0].replace(/\/+$/, '') || '/';
-
-  let pageContent: React.ReactNode;
-  let activeMetadata: SiteMetadata;
-
-  switch (pathname) {
-    case '/':
-      pageContent = <HomePage />;
-      activeMetadata = homeMetadata;
-      break;
-    case '/services':
-      pageContent = <ServicesPage />;
-      activeMetadata = servicesMetadata;
-      break;
-    case '/about':
-      pageContent = <AboutPage />;
-      activeMetadata = aboutMetadata;
-      break;
-    case '/contact':
-      pageContent = <ContactPage />;
-      activeMetadata = contactMetadata;
-      break;
-    default:
-      pageContent = <NotFoundState />;
-      activeMetadata = notFoundMetadata;
-      break;
-  }
+    syncDocumentMetadata(activeRoute.metadata);
+    const hashId = window.location.hash.replace(/^#/, '');
+    if (hashId) {
+      document.getElementById(hashId)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [pathname, activeRoute.metadata]);
 
   return (
-    <RootLayout currentPath={pathname} pageMetadata={activeMetadata}>
-      {pageContent}
-    </RootLayout>
+    <AppShell>
+      <PageComponent />
+    </AppShell>
   );
 }
