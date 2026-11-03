@@ -22,7 +22,7 @@ export default function PhotoFrame({
   return (
     <div
       style={{ backgroundImage: `url(${activeSrc})` }}
-      className={`group relative overflow-hidden rounded-lg border border-slate-200 bg-slate-900 bg-cover bg-center ${aspectClass}`}
+      className={`group relative overflow-hidden rounded border border-[#b5c7be] bg-[#0e2a24] bg-cover bg-center ${aspectClass}`}
     >
       <img
         src={activeSrc}
@@ -36,7 +36,7 @@ export default function PhotoFrame({
         }}
         className="absolute inset-0 h-full w-full object-cover transition-transform duration-200 ease-out group-hover:scale-105"
       />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[#2563eb]/12" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[#091c18]/12 ring-1 ring-inset ring-black/10" />
     </div>
   );
 }

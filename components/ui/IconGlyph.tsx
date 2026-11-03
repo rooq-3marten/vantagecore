@@ -11,15 +11,26 @@ const iconPaths: Record<IconName, string> = {
   close: 'M6 6l12 12M18 6L6 18',
 };
 
-export default function IconGlyph({ name, contained = true }: { name: IconName; contained?: boolean }) {
+export default function IconGlyph({
+  name,
+  contained = true,
+  tone = 'light',
+}: {
+  name: IconName;
+  contained?: boolean;
+  tone?: 'light' | 'dark';
+}) {
   const svg = (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-5 w-5 shrink-0">
       <path d={iconPaths[name]} />
     </svg>
   );
   if (!contained) return svg;
+  const boxClass = tone === 'dark'
+    ? 'border-[#265c50] bg-[#173f36] text-[#6ee7b7] group-hover:border-[#34d399] group-hover:text-white'
+    : 'border-[#b5cfc3] bg-[#e6f1ec] text-[#0b6b58] group-hover:border-[#84b39f] group-hover:bg-[#d7eae1]';
   return (
-    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#2563eb]/10 text-[#2563eb] transition-colors duration-200 group-hover:bg-[#2563eb]/20">
+    <div className={`flex h-10 w-10 items-center justify-center rounded border transition-colors duration-200 ${boxClass}`}>
       {svg}
     </div>
   );

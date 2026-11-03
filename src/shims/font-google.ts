@@ -7,3 +7,7 @@ export interface FontOptions {
 export function Inter(_options?: FontOptions): { className: string } {
   return { className: 'font-sans' };
 }
+
+export function Plus_Jakarta_Sans(_options?: FontOptions): { className: string } {
+  return { className: 'font-sans' };
+}

@@ -28,7 +28,7 @@ export default function Image({
       <div
         role="img"
         aria-label={alt}
-        className={`flex items-center justify-center bg-slate-900 text-xs font-medium text-slate-300 ${fill ? 'absolute inset-0 h-full w-full' : ''} ${className}`}
+        className={`flex items-center justify-center bg-[#0e2a24] text-xs font-medium text-[#d1dfd9] ${fill ? 'absolute inset-0 h-full w-full' : ''} ${className}`}
       />
     );
   }
