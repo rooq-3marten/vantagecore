@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import Footer from '@/components/layout/Footer';
 import Navbar from '@/components/layout/Navbar';
+import OfflineIndicator from '@/components/ui/OfflineIndicator';
 import { companyName, siteMetadata } from '@/lib/constants';
 import './globals.css';
 
@@ -25,6 +26,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <Navbar />
       <div className="flex-1">{children}</div>
       <Footer />
+      <OfflineIndicator />
     </div>
   );
 }

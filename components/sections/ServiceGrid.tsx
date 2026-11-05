@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Card from '@/components/ui/Card';
+import ArchitectureBlueprint from '@/components/ui/ArchitectureBlueprint';
 import IconGlyph from '@/components/ui/IconGlyph';
 import PhotoFrame from '@/components/ui/PhotoFrame';
 import SectionHeading from '@/components/ui/SectionHeading';
@@ -75,6 +76,10 @@ export default function ServiceGrid() {
               Data scope →
             </Link>
           </div>
+        </div>
+
+        <div className="mt-14">
+          <ArchitectureBlueprint />
         </div>
       </div>
     </section>

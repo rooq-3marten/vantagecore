@@ -31,13 +31,16 @@ export default function ContactForm() {
 
     try {
       const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email, scope: scope || 'general', organization: org, message }) });
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        return setState({ status: 'error', error: errData.error || contactFormCopy.errorRequired });
+      }
       const resData = await res.json().catch(() => ({}));
       const reference = resData.reference || `VC-${new Date().getFullYear()}-${Math.floor(100000 + Math.random() * 900000)}`;
       setCopied(false);
       setState({ status: 'submitted', reference, mailto, summary });
     } catch {
-      setCopied(false);
-      setState({ status: 'submitted', reference: `VC-DIRECT-${Math.floor(100000 + Math.random() * 900000)}`, mailto, summary });
+      setCopied(false); setState({ status: 'submitted', reference: `VC-OFFLINE-${Math.floor(100000 + Math.random() * 900000)}`, mailto, summary });
     }
   };
 
@@ -87,9 +90,7 @@ export default function ContactForm() {
       </div>
       <label className="mt-5 block text-sm font-medium text-[#162d28]">{contactFormCopy.messageLabel}<textarea name="message" rows={6} defaultValue={defaultMessage} required placeholder={contactFormCopy.messagePlaceholder} className={fieldClass} /></label>
       <div className="mt-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-        <Button type="submit" variant="solid" size="md" withArrow disabled={state.status === 'submitting'}>
-          {state.status === 'submitting' ? 'Submitting Brief...' : contactFormCopy.submitLabel}
-        </Button>
+        <Button type="submit" variant="solid" size="md" withArrow disabled={state.status === 'submitting'}>{state.status === 'submitting' ? 'Submitting Brief...' : contactFormCopy.submitLabel}</Button>
         <p className="text-xs font-normal text-[#4b635d]">{contactFormCopy.privacyNote}</p>
       </div>
     </form>

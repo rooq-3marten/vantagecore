@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import MobileNav from '@/components/ui/MobileNav';
 import NavItems from '@/components/ui/NavItems';
+import LiveDeskStatus from '@/components/ui/LiveDeskStatus';
+import PWAInstallButton from '@/components/ui/PWAInstallButton';
 import { companyName, contactChannels, navbarCopy, primaryNavLinks, primaryOffice } from '@/lib/constants';
 
 export default function Navbar() {
@@ -10,7 +12,13 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 bg-[#0c241f]">
       <div className="hidden border-b border-[#193b33] bg-[#071714] text-xs text-[#c7d8d0] sm:block">
         <div className="mx-auto flex h-8 max-w-6xl items-center justify-between gap-4 px-6">
-          <p className="truncate font-medium text-[#c7d8d0]">{navbarCopy.utilityBarText}</p>
+          <div className="flex items-center gap-3 truncate">
+            <p className="truncate font-medium text-[#c7d8d0]">{navbarCopy.utilityBarText}</p>
+            <span aria-hidden="true" className="hidden lg:inline h-3 w-px bg-[#214a40]" />
+            <div className="hidden lg:block">
+              <LiveDeskStatus variant="bar" />
+            </div>
+          </div>
           <div className="flex items-center gap-4 whitespace-nowrap shrink-0">
             <a href={`mailto:${contactChannels.architectureEmail}`} className="text-[#c7d8d0] transition-colors hover:text-white">
               {contactChannels.architectureEmail}
@@ -44,6 +52,7 @@ export default function Navbar() {
           <NavItems links={primaryNavLinks} />
 
           <div className="flex items-center gap-3 shrink-0">
+            <PWAInstallButton className="hidden sm:inline-flex" />
             <div className="hidden md:block">
               <Button href={navbarCopy.ctaHref} variant="solid" size="sm" withArrow>{navbarCopy.ctaLabel}</Button>
             </div>

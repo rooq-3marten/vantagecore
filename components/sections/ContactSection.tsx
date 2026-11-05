@@ -1,5 +1,6 @@
 import React from 'react';
 import CopyEmailButton from '@/components/ui/CopyEmailButton';
+import LiveDeskStatus from '@/components/ui/LiveDeskStatus';
 import SectionHeading from '@/components/ui/SectionHeading';
 import {
   contactChannels, primaryEmail, primaryEmailHref,
@@ -26,7 +27,8 @@ export default function ContactSection({ formSlot }: ContactSectionProps) {
         <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-12 px-6 lg:grid-cols-12">
           <div className="lg:col-span-7">{formSlot}</div>
 
-          <aside className="space-y-8 lg:col-span-5">
+          <aside className="space-y-6 lg:col-span-5">
+            <LiveDeskStatus variant="badge" />
             <div className="rounded border border-[#1a4037] bg-[#0e2a24] p-7">
               <h2 className="text-xs font-semibold text-[#6ee7b7]">{contactPageData.directLinesHeading}</h2>
               <div className="mt-4 space-y-4">

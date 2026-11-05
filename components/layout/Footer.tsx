@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import PWAInstallButton from '@/components/ui/PWAInstallButton';
 import { companyName, footerCopy, legalEntity, primaryEmail, primaryEmailHref, primaryNavLinks, primaryOffice } from '@/lib/constants';
 
 export default function Footer() {
@@ -51,9 +52,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col justify-between gap-3 border-t border-[#17362f] pt-6 text-xs text-[#9cb3a9] sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-[#17362f] pt-6 text-xs text-[#9cb3a9] sm:flex-row">
           <p>{footerCopy.copyrightNotice}</p>
-          <p>{legalEntity}</p>
+          <div className="flex items-center gap-4">
+            <PWAInstallButton />
+            <p>{legalEntity}</p>
+          </div>
         </div>
       </div>
     </footer>
