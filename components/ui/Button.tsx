@@ -8,6 +8,7 @@ export interface ButtonProps {
   size?: 'sm' | 'md' | 'compact';
   withArrow?: boolean;
   type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
   onClick?: () => void;
   className?: string;
 }
@@ -35,10 +36,12 @@ export default function Button({
   size = 'md',
   withArrow = false,
   type = 'button',
+  disabled = false,
   onClick,
   className = '',
 }: ButtonProps) {
-  const combined = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`.trim();
+  const disabledClass = disabled ? 'opacity-65 cursor-not-allowed pointer-events-none' : '';
+  const combined = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${disabledClass} ${className}`.trim();
   const content = (
     <>
       <span>{children}</span>
@@ -49,6 +52,6 @@ export default function Button({
       )}
     </>
   );
-  if (href) return <Link href={href} className={combined}>{content}</Link>;
-  return <button type={type} onClick={onClick} className={combined}>{content}</button>;
+  if (href && !disabled) return <Link href={href} className={combined}>{content}</Link>;
+  return <button type={type} disabled={disabled} onClick={onClick} className={combined}>{content}</button>;
 }

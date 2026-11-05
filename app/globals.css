@@ -78,3 +78,19 @@ html {
     transition-duration: 0.01ms;
   }
 }
+
+@media print {
+  header, footer, aside, button, nav { display: none !important; }
+  body { background: #ffffff !important; color: #000000 !important; }
+  body::before {
+    content: "VANTAGECORE SYSTEMS · Cloud & Network Infrastructure Engineering · shekonifarooq@gmail.com · +234 70526752";
+    display: block;
+    font-size: 9pt;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid #0c241f;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    color: #0c241f;
+  }
+}
